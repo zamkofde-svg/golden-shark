@@ -1,18 +1,18 @@
 /* ========= Golden Shark — brand styles =========
-   Палитра: deep petrol/teal + gold (логотип клуба)
-   accent #d4af5a · deep #a87f33 · base #0a181b · surface #122b2f/#1a3a3f
-   text #f3efe2 · muted #6a807d
+   Палитра: серо-синий (фон логотипа) + gold
+   accent #d4af5a · deep #a87f33 · base #1d2d34 · surface #2a4049/#34505a
+   text #f3efe2 · muted #74878d
 ================================================== */
 
 :root {
-  --bg:        #0a181b;
-  --bg-2:      #0e2024;
-  --surface:   #122b2f;
-  --surface-2: #1a3a3f;
-  --line:      #224a4e;
+  --bg:        #1d2d34;
+  --bg-2:      #233640;
+  --surface:   #2a4049;
+  --surface-2: #34505a;
+  --line:      #3c5862;
   --text:      #f3efe2;
-  --muted:     #9bb0ad;
-  --muted-2:   #6a807d;
+  --muted:     #a4b6bc;
+  --muted-2:   #74878d;
   --accent:    #d4af5a;
   --accent-deep: #a87f33;
   --accent-soft: rgba(212, 175, 90, .14);
@@ -74,7 +74,7 @@ h3 { font-size: 1.25rem; }
   font-family: var(--font-head); font-weight: 600; font-size: .95rem;
   cursor: pointer; border: 1px solid transparent; transition: .2s ease; white-space: nowrap;
 }
-.btn-primary { background: var(--accent); color: #07181c; box-shadow: var(--shadow-accent); }
+.btn-primary { background: var(--accent); color: #14242a; box-shadow: var(--shadow-accent); }
 .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
@@ -87,14 +87,14 @@ h3 { font-size: 1.25rem; }
   transition: .3s ease; border-bottom: 1px solid transparent;
 }
 .header.scrolled {
-  background: rgba(10,24,27,.82); backdrop-filter: blur(14px);
+  background: rgba(29,45,52,.82); backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
 .logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; }
 .logo-mark { width: 42px; height: 42px; border-radius: 50%; display: block; }
 .logo-mark.txt {
-  border-radius: 11px; background: var(--accent); color: #07181c;
+  border-radius: 11px; background: var(--accent); color: #14242a;
   display: grid; place-items: center; font-size: 1.4rem; font-weight: 800;
   box-shadow: var(--shadow-accent);
 }
@@ -161,7 +161,7 @@ h3 { font-size: 1.25rem; }
 .tcard:hover { transform: translateY(-4px); border-color: var(--accent); }
 .tcard .ribbon {
   position: absolute; top: 20px; right: -34px; transform: rotate(45deg);
-  background: var(--accent); color: #07181c; font-size: .68rem; font-weight: 700;
+  background: var(--accent); color: #14242a; font-size: .68rem; font-weight: 700;
   font-family: var(--font-head); padding: 4px 40px; letter-spacing: .06em;
 }
 .tcard .date { font-family: var(--font-head); color: var(--accent); font-size: .82rem; font-weight: 600; letter-spacing: .04em; }
@@ -290,7 +290,7 @@ table.lb td.num { text-align: center; color: var(--muted); }
 .dash { padding-top: 110px; padding-bottom: 80px; }
 .dash-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 36px; }
 .profile { display: flex; gap: 18px; align-items: center; }
-.avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: 1.8rem; color: #07181c; }
+.avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: 1.8rem; color: #14242a; }
 .profile .who h2 { font-size: 1.6rem; } .profile .who .uid { color: var(--muted); font-size: .88rem; }
 .profile .tg-tag { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--accent); margin-top: 4px; }
 
