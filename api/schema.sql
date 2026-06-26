@@ -113,5 +113,5 @@ CREATE TABLE IF NOT EXISTS user_achievements (
 
 -- Демонстрационные турниры (можно удалить и завести свои)
 INSERT INTO tournaments (title, format, starts_at, buyin, stack, seats, description) VALUES
-  ('Классика', 'classic', DATE_ADD(CURDATE(), INTERVAL 2 DAY) + INTERVAL 19 HOUR, 1500, 20000, 36, 'Texas Hold''em NL. Стартовый стек 20 000, уровни по 20 минут.'),
-  ('Баунти',   'bounty',  DATE_ADD(CURDATE(), INTERVAL 4 DAY) + INTERVAL 17 HOUR, 2500, 30000, 36, 'Knockout. За каждого выбитого +250 очков в рейтинг.');
+  ('Классика', 'classic', DATE_ADD(CURDATE(), INTERVAL 2 DAY) + INTERVAL 19 HOUR, 1000, 20000, 36, 'Texas Hold''em NL. Стартовый стек 20 000, уровни по 20 минут.'),
+  ('Баунти',   'bounty',  DATE_ADD(CURDATE(), INTERVAL 4 DAY) + INTERVAL 17 HOUR, 1000, 30000, 36, 'Knockout. За каждого выбитого +250 очков в рейтинг.');

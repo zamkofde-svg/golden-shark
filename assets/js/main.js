@@ -101,8 +101,8 @@ function tcard(t, hit){
 function demoTours(){
   const now=new Date(); const mk=(addD,h)=>{const d=new Date(now); d.setDate(d.getDate()+addD); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(h).padStart(2,'0')}:00:00`;};
   return [
-    {title:'Классика',format:'classic',starts_at:mk(1,19),stack:20000,seats:36,taken:9,buyin:1500},
-    {title:'Баунти',format:'bounty',starts_at:mk(3,17),stack:30000,seats:36,taken:5,buyin:2500},
+    {title:'Классика',format:'classic',starts_at:mk(1,19),stack:20000,seats:36,taken:9,buyin:1000},
+    {title:'Баунти',format:'bounty',starts_at:mk(3,17),stack:30000,seats:36,taken:5,buyin:1000},
   ];
 }
 

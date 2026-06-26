@@ -279,8 +279,8 @@ function startDemo() {
       ],
     };
     const tours = [
-      { id: 1, title: 'Классика', starts_at: iso(2, 19), venue: 'г. Краснодар', buyin: 1500, seats: 36, taken: 9, my_status: 'confirmed' },
-      { id: 2, title: 'Баунти',   starts_at: iso(4, 17), venue: 'г. Краснодар', buyin: 2500, seats: 36, taken: 14, my_status: 'waitlist' },
+      { id: 1, title: 'Классика', starts_at: iso(2, 19), venue: 'г. Краснодар', buyin: 1000, seats: 36, taken: 9, my_status: 'confirmed' },
+      { id: 2, title: 'Баунти',   starts_at: iso(4, 17), venue: 'г. Краснодар', buyin: 1000, seats: 36, taken: 14, my_status: 'waitlist' },
     ];
     show('dash');
     renderDashboard(me, tours);
