@@ -65,15 +65,15 @@ schema.sql         — схема БД + демо-турниры
 
 ## Домен
 
-Боевой домен — **goldenshark.fun**. Он должен указывать на **хостинг reg.ru с PHP**
+Боевой домен — **goldensharks.ru**. Он должен указывать на **хостинг reg.ru с PHP**
 (где лежит `api/`), а НЕ на GitHub Pages — иначе бэкенд работать не будет.
 GitHub Pages (`zamkofde-svg.github.io/zacep`) остаётся как превью/стейджинг в демо-режиме.
 
 Подключение:
-1. В reg.ru привязать домен `goldenshark.fun` к хостингу (Домены → Привязать к услуге),
+1. В reg.ru привязать домен `goldensharks.ru` к хостингу (Домены → Привязать к услуге),
    либо прописать DNS A-запись на IP хостинга. SSL (Let's Encrypt) включить в панели.
-2. В @BotFather: `/setdomain` → `goldenshark.fun` (Telegram-виджет работает только на нём).
-3. Проверить `https://goldenshark.fun/` и `https://goldenshark.fun/account.html`.
+2. В @BotFather: `/setdomain` → `goldensharks.ru` (Telegram-виджет работает только на нём).
+3. Проверить `https://goldensharks.ru/` и `https://goldensharks.ru/account.html`.
 
 ## Что доработать перед боевым запуском
 - Реальные адрес, телефон, соцсети, ссылку на Telegram-канал и точку на карте (2ГИС или Яндекс).

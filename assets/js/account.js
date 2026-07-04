@@ -97,7 +97,7 @@ function bindPhoneAuth() {
 
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!BACKEND) { alert('Вход по телефону работает на боевом сайте (goldenshark.fun).'); return; }
+    if (!BACKEND) { alert('Вход по телефону работает на боевом сайте (goldensharks.ru).'); return; }
     try {
       await api('login_phone.php', { method: 'POST', body: JSON.stringify({ phone: el('liPhone').value.trim(), password: el('liPass').value }) });
       await route();
@@ -106,7 +106,7 @@ function bindPhoneAuth() {
 
   regForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!BACKEND) { alert('Регистрация работает на боевом сайте (goldenshark.fun).'); return; }
+    if (!BACKEND) { alert('Регистрация работает на боевом сайте (goldensharks.ru).'); return; }
     if (!el('rgConsent').checked) { alert('Подтвердите согласие, чтобы продолжить'); return; }
     try {
       await api('register_phone.php', { method: 'POST', body: JSON.stringify({

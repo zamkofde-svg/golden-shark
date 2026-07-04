@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /account.html
 
-Sitemap: https://goldenshark.fun/sitemap.xml
+Sitemap: https://goldensharks.ru/sitemap.xml
