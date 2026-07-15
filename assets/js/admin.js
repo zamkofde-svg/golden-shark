@@ -44,12 +44,81 @@ const FORMATS = { classic: 'Классика', bounty: 'Баунти' };
 function renderShell(user) {
   root.innerHTML = `
     <div class="admin-head">
-      <div><h1 style="font-size:1.8rem;">Админка</h1><p class="muted">Привет, ${esc(user.first_name || user.nick || 'админ')} 👋</p></div>
+      <div><h1 style="font-size:1.8rem;">Админка</h1><p class="muted">Привет, ${esc(user.first_name || user.nick || 'админ')} 👋 · <a href="help.html" style="color:var(--accent);">Инструкция</a></p></div>
       <button class="btn btn-primary btn-sm" id="newBtn">+ Новый турнир</button>
     </div>
     <div class="panel" id="formPanel" hidden></div>
-    <div class="panel"><div class="panel-head"><h3>Турниры</h3></div><div id="tlist"><p class="muted">Загрузка…</p></div></div>`;
+    <div class="panel"><div class="panel-head"><h3>Турниры</h3></div><div id="tlist"><p class="muted">Загрузка…</p></div></div>
+    <div class="panel">
+      <div class="panel-head"><h3>Тексты сайта</h3><button class="btn btn-ghost btn-sm" id="cmsToggle">Открыть</button></div>
+      <div id="cmsBody" hidden><p class="muted">Загрузка…</p></div>
+    </div>`;
   document.getElementById('newBtn').addEventListener('click', () => openForm());
+  document.getElementById('cmsToggle').addEventListener('click', toggleCms);
+}
+
+/* ---------- Тексты сайта (CMS-lite) ---------- */
+const CMS_SECTIONS = [
+  { title: 'Главный экран', keys: { 'hero.slogan': 'Слоган (вторая строка заголовка)', 'hero.lead': 'Текст под заголовком' } },
+  { title: 'Цифры на главном экране', keys: { 'stat1.num': 'Цифра 1', 'stat1.lbl': 'Подпись 1', 'stat2.num': 'Цифра 2', 'stat2.lbl': 'Подпись 2', 'stat3.num': 'Цифра 3', 'stat3.lbl': 'Подпись 3' } },
+  { title: 'О клубе', keys: { 'about.title': 'Заголовок', 'about.text': 'Текст' } },
+  { title: 'Баннер «Первый турнир»', keys: { 'cta.title': 'Заголовок', 'cta.text': 'Текст' } },
+  { title: 'Частые вопросы', keys: { 'faq1.q': 'Вопрос 1', 'faq1.a': 'Ответ 1', 'faq2.q': 'Вопрос 2', 'faq2.a': 'Ответ 2', 'faq3.q': 'Вопрос 3', 'faq3.a': 'Ответ 3', 'faq4.q': 'Вопрос 4', 'faq4.a': 'Ответ 4', 'faq5.q': 'Вопрос 5', 'faq5.a': 'Ответ 5', 'faq6.q': 'Вопрос 6', 'faq6.a': 'Ответ 6' } },
+  { title: 'Контакты и подвал', keys: { 'contact.addr': 'Адрес', 'contact.hours': 'Время работы', 'footer.about': 'Описание клуба в подвале' } },
+];
+
+let cmsLoaded = false;
+async function toggleCms() {
+  const body = document.getElementById('cmsBody');
+  const btn = document.getElementById('cmsToggle');
+  body.hidden = !body.hidden;
+  btn.textContent = body.hidden ? 'Открыть' : 'Свернуть';
+  if (!body.hidden && !cmsLoaded) { cmsLoaded = true; await loadCms(); }
+}
+
+async function loadCms() {
+  const body = document.getElementById('cmsBody');
+  try {
+    // Тексты по умолчанию берём из самой главной страницы
+    const html = await (await fetch('index.html', { credentials: 'same-origin' })).text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const defaults = {};
+    doc.querySelectorAll('[data-edit]').forEach(el => { defaults[el.dataset.edit] = el.textContent.trim(); });
+    const { content } = await api('content.php');
+
+    body.innerHTML = `
+      <p class="muted" style="margin-bottom:18px;">Изменения появляются на сайте сразу после сохранения. Очисти поле и сохрани — вернётся стандартный текст.</p>
+      ${CMS_SECTIONS.map(sec => `
+        <h4 style="font-family:var(--font-head);margin:22px 0 10px;color:var(--accent);">${esc(sec.title)}</h4>
+        ${Object.entries(sec.keys).map(([k, label]) => `
+          <div style="margin-bottom:12px;">
+            <label class="lbl" style="display:block;margin-bottom:4px;">${esc(label)}</label>
+            <textarea data-cms="${k}" rows="${(defaults[k] || '').length > 80 ? 3 : 1}"
+              style="width:100%;resize:vertical;background:var(--bg-2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;"
+              placeholder="${esc(defaults[k] || '')}">${esc(content[k] || '')}</textarea>
+          </div>`).join('')}
+      `).join('')}
+      <div style="margin-top:18px;display:flex;gap:12px;align-items:center;">
+        <button class="btn btn-primary btn-sm" id="cmsSave">Сохранить тексты</button>
+        <span class="muted" id="cmsStatus"></span>
+      </div>`;
+    document.getElementById('cmsSave').addEventListener('click', saveCms);
+  } catch (e) {
+    body.innerHTML = '<p class="muted">Не удалось загрузить тексты. Обнови страницу.</p>';
+  }
+}
+
+async function saveCms() {
+  const st = document.getElementById('cmsStatus');
+  const items = {};
+  document.querySelectorAll('[data-cms]').forEach(t => { items[t.dataset.cms] = t.value; });
+  st.textContent = 'Сохраняю…';
+  try {
+    const r = await api('content.php', { method: 'POST', body: JSON.stringify({ items }) });
+    st.textContent = `Сохранено ✓ (изменено: ${r.saved}, сброшено: ${r.cleared})`;
+  } catch (e) {
+    st.textContent = 'Ошибка сохранения: ' + (e.data?.message || e.message);
+  }
 }
 
 /* ---------- форма турнира ---------- */

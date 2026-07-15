@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Инструкция — Golden Shark</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=6" />
+  <style>
+    .doc { max-width: 780px; margin: 0 auto; padding: 120px 24px 80px; }
+    .doc h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 10px; }
+    .doc h2 { font-size: 1.3rem; margin: 38px 0 12px; color: var(--accent); }
+    .doc h3 { font-size: 1.05rem; margin: 22px 0 8px; }
+    .doc p, .doc li { color: var(--muted); font-size: 1rem; line-height: 1.65; }
+    .doc ol, .doc ul { padding-left: 22px; margin: 10px 0; }
+    .doc ol li, .doc ul li { list-style: revert; margin-bottom: 6px; }
+    .doc b, .doc strong { color: var(--text); }
+    .doc .tip { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 14px 18px; margin: 16px 0; }
+    .doc code { background: var(--surface); border-radius: 6px; padding: 2px 7px; font-size: .92em; color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header class="header scrolled">
+    <div class="wrap nav">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="assets/img/logo-mark.png?v=2" alt="Golden Shark" />
+        <span><span class="accent">Golden Shark</span></span>
+      </a>
+      <div class="nav-actions">
+        <a href="admin.html" class="btn btn-primary btn-sm">В админку</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc">
+    <h1>Инструкция по управлению сайтом</h1>
+    <p>Как вести турниры, менять тексты и что где находится. Всё делается прямо на сайте — код трогать не нужно.</p>
+
+    <h2>1. Как войти в админку</h2>
+    <ol>
+      <li>Откройте сайт → кнопка <b>«Личный кабинет»</b> (вверху справа).</li>
+      <li>Войдите <b>через Telegram</b> (кнопка входа) — подтвердите в приложении.</li>
+      <li>Если ваш аккаунт — администратор, в кабинете появится кнопка <b>«⚙ Админка»</b>.</li>
+    </ol>
+    <div class="tip">Права администратора привязаны к вашему Telegram. Чтобы добавить нового админа — сообщите разработчику его Telegram-ID (узнать: написать боту <code>@userinfobot</code>).</div>
+
+    <h2>2. Турниры: создать, изменить, скрыть</h2>
+    <ol>
+      <li>В админке нажмите <b>«+ Новый турнир»</b>.</li>
+      <li>Заполните: название, формат, дату и время, оргвзнос, стартовый стек, число мест, площадку, описание.</li>
+      <li>Галочка <b>«Опубликован»</b> — турнир виден на сайте в «Ближайших турнирах». Без галочки — черновик, виден только вам.</li>
+      <li>Нажмите <b>«Создать турнир»</b>.</li>
+    </ol>
+    <p>У каждого турнира в списке есть кнопки:</p>
+    <ul>
+      <li><b>▶ Вести</b> — пульт турнир-директора на день игры (см. п. 3);</li>
+      <li><b>Записи</b> — кто записался; здесь же можно записать игрока вручную по телефону;</li>
+      <li><b>Изменить</b> — поправить любые данные;</li>
+      <li><b>Удалить</b> — убрать турнир совсем.</li>
+    </ul>
+    <div class="tip">На сайте показываются только турниры с датой <b>в будущем</b>. Прошедшие автоматически исчезают из «Ближайших».</div>
+
+    <h2>3. День турнира: режим «Вести»</h2>
+    <ol>
+      <li><b>Чек-ин</b> — отмечаете пришедших, каждый получает номер-бэйдж.</li>
+      <li><b>Касса</b> — закупы, повторные входы (Ребай), аддоны.</li>
+      <li><b>Рассадка</b> — автоматически раскидать игроков по столам или пересадить вручную по номеру бэйджа.</li>
+      <li><b>Часы блайндов</b> — старт, пауза, следующий уровень. Уровни идут по таймеру.</li>
+      <li><b>Финиш</b> — отмечаете места выбывших. Очки в рейтинг начисляются автоматически.</li>
+    </ol>
+
+    <h2>4. Табло для телевизора</h2>
+    <p>Страница <code>live.html</code> (адрес: <b>goldensharks.ru/live.html</b>) — большой таймер блайндов и текущий уровень. Откройте её на ТВ или мониторе в зале.</p>
+
+    <h2>5. Тексты сайта: менять самим</h2>
+    <ol>
+      <li>В админке найдите блок <b>«Тексты сайта»</b> → кнопка <b>«Открыть»</b>.</li>
+      <li>Меняйте любые поля: слоган, описания, вопросы-ответы, адрес, время работы, цифры на главной.</li>
+      <li>Нажмите <b>«Сохранить тексты»</b> — изменения появляются на сайте сразу.</li>
+    </ol>
+    <div class="tip">Серый текст в пустом поле — это текст «по умолчанию», который сейчас на сайте. Хотите вернуть стандартный вариант — просто очистите поле и сохраните.</div>
+
+    <h2>6. Личный кабинет игрока — что видят гости</h2>
+    <p>Игрок входит через Telegram и видит: своё место в рейтинге, очки, историю игр, ближайшие турниры с кнопкой «Записаться». Во время турнира — свой номер-бэйджа, стол и место.</p>
+
+    <h2>Частые вопросы</h2>
+    <p><b>«Поменял текст, а на сайте по-старому»</b> — обновите страницу (Ctrl+F5 / Cmd+Shift+R).</p>
+    <p><b>«Хочу поменять цвета, фото, логотип или структуру»</b> — это делает разработчик, напишите ему.</p>
+    <p><b>«Не вижу кнопку Админка»</b> — ваш Telegram не в списке админов, сообщите разработчику свой ID.</p>
+  </main>
+</body>
+</html>

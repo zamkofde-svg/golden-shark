@@ -1,5 +1,17 @@
 /* ====== Golden Shark — landing interactions ====== */
 
+// Тексты сайта: переопределения из админки (api/content.php)
+(async () => {
+  try {
+    const r = await fetch('api/content.php', { credentials: 'same-origin' });
+    const { content } = JSON.parse(await r.text());
+    if (!content) return;
+    for (const [key, val] of Object.entries(content)) {
+      document.querySelectorAll(`[data-edit="${key}"]`).forEach(el => { el.textContent = val; });
+    }
+  } catch { /* статичное превью или бэкенд недоступен — остаются тексты по умолчанию */ }
+})();
+
 // Header shadow on scroll
 const header = document.getElementById('header');
 const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
